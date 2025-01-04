@@ -70,9 +70,18 @@ const Home = () => {
     const result = results[i];
     const releaseDate = result.release_date.split('-');
 
-    if ((parseInt(releaseDate[0]) === todaysDate[2] && parseInt(releaseDate[1]) > todaysDate[0] - 6)) {
+    const releaseDateMonth = parseInt(releaseDate[1]);
+    const releaseDateDay = parseInt(releaseDate[2]);
+    const releaseDateYear = parseInt(releaseDate[0]);
+
+    const todaysDateMonth = parseInt(todaysDate[0]);
+    const todaysDateDay = parseInt(todaysDate[1]);
+    const todaysDateYear = parseInt(todaysDate[2]);
+
+    if ((releaseDateYear === todaysDateYear && releaseDateMonth > todaysDateMonth + 6) || releaseDateYear > todaysDateYear) {
       continue;
     }
+    
     const lowercase = result.original_title.replaceAll(' ', '-').toLowerCase() + '-' + releaseDate[0];
 
     const map = {
@@ -125,85 +134,83 @@ const Home = () => {
               Every Movie, Everywhere, All at Once
             </center>
           </h1>
-              
-        </div>
-        
+        </div>  
       </Link>
-      <Link to="/films"><button class="secondary-button" role="button">Start Here <FiArrowRight /></button></Link>
+
+      <Link to="/films">
+        <button class="secondary-button" role="button">Start Here <FiArrowRight /></button>
+      </Link>
+    </div>
+
+    {/* <div classname="home-banner-container" > */}
+    <div className="UpcomingMovies-text-section-container">
+      <center>
+        <Link className='arrow' to='/films/upcoming'>
+          <h4>Upcoming Movies<BiSolidRightArrow /></h4>
+        </Link>
+      </center>
+    </div>
+
+    <div className="UpcomingMovies-section-container">
+      <div className="UpcomingMovies-images">
+          <Link to={`/movie/${queue.get(0) == null ? '' : queue.get(0).page_title}`}>
+              <img className='MovieImage-size' src={queue.get(0) == null ? '' : queue.get(0).poster} alt=''></img>
+          </Link>
+
+          <Link to={`/movie/${queue.get(1) == null ? '' : queue.get(1).page_title}`}>
+              <img className='MovieImage-size'src={queue.get(1) == null ? '' : queue.get(1).poster} alt=''></img>
+          </Link>
+
+          <Link to={`/movie/${queue.get(2) == null ? '' : queue.get(2).page_title}`}>
+              <img className='MovieImage-size'src={queue.get(2) == null ? '' : queue.get(2).poster} alt=''></img>
+          </Link>
+
+          <Link to={`/movie/${queue.get(3) == null ? '' : queue.get(3).page_title}`}>
+              <img className='MovieImage-size'src={queue.get(3) == null ? '' : queue.get(3).poster} alt=''></img>
+          </Link>
+
+          <Link to={`/movie/${queue.get(4) == null ? '' : queue.get(4).page_title}`}>
+              <img className='MovieImage-size'src={queue.get(4) == null ? '' : queue.get(4).poster} alt=''></img>
+          </Link>
       </div>
+    </div>
 
+    <div className="movie-of-the-day-container" style={{backgroundImage: "url(" + 'https://www.themoviedb.org/t/p/w1280/7HR38hMBl23lf38MAN63y4pKsHz.jpg' + ")"}}>
+      <div className='content-motd'>
+          <Link to={`/movie/past-lives-2023`}>
+              <img className='movie-of-the-day-poster'src={'https://image.tmdb.org/t/p/original/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg'} alt=''></img>
+          </Link>
+          
+          <h1 className='movie-of-the-day-heading'>
+              Movie of the Day
+          </h1>
 
-                            
-
-      {/* <div classname="home-banner-container" > */}
-      <div className="UpcomingMovies-text-section-container">
-              <center>
-              <Link className='arrow' to='/films/upcoming'><h4>Upcoming Movies<BiSolidRightArrow /></h4> </Link>
-              </center>
-              </div>
-        <div className="UpcomingMovies-section-container">
-
-              <div className="UpcomingMovies-images">
-                  <Link to={`/movie/${queue.get(0) == null ? '' : queue.get(0).page_title}`}>
-                      <img className='MovieImage-size' src={queue.get(0) == null ? '' : queue.get(0).poster} alt=''></img>
-                  </Link>
-
-                  <Link to={`/movie/${queue.get(1) == null ? '' : queue.get(1).page_title}`}>
-                      <img className='MovieImage-size'src={queue.get(1) == null ? '' : queue.get(1).poster} alt=''></img>
-                  </Link>
-
-                  <Link to={`/movie/${queue.get(2) == null ? '' : queue.get(2).page_title}`}>
-                      <img className='MovieImage-size'src={queue.get(2) == null ? '' : queue.get(2).poster} alt=''></img>
-                  </Link>
-
-                  <Link to={`/movie/${queue.get(3) == null ? '' : queue.get(3).page_title}`}>
-                      <img className='MovieImage-size'src={queue.get(3) == null ? '' : queue.get(3).poster} alt=''></img>
-                  </Link>
-
-                  <Link to={`/movie/${queue.get(4) == null ? '' : queue.get(4).page_title}`}>
-                      <img className='MovieImage-size'src={queue.get(4) == null ? '' : queue.get(4).poster} alt=''></img>
-                  </Link>
-
+          <div className="movie-of-the-day-title">
+              <p>{`Past Lives`}</p>
           </div>
 
-
+          <div className="movie-of-the-day-description">
+            <p>{`Nora and Hae Sung, two childhood friends, are reunited in New York for one fateful week as they confront notions of destiny, love, and the choices that make a life.`}</p>
+          </div>
       </div>
+    </div>
 
-      <div className="movie-of-the-day-container" style={{backgroundImage: "url(" + 'https://www.themoviedb.org/t/p/w1280/7HR38hMBl23lf38MAN63y4pKsHz.jpg' + ")"}}>
-        <div className='content-motd'>
-            <Link to={`/movie/past-lives-2023`}>
-                <img className='movie-of-the-day-poster'src={'https://image.tmdb.org/t/p/original/k3waqVXSnvCZWfJYNtdamTgTtTA.jpg'} alt=''></img>
-            </Link>
-            <h1 className='movie-of-the-day-heading'>
-                Movie of the Day
-            </h1>
-            <div className="movie-of-the-day-title">
-                <p>{`Past Lives`}</p>
-            </div>
-            <div className="movie-of-the-day-description">
-              <p>{`Nora and Hae Sung, two childhood friends, are reunited in New York for one fateful week as they confront notions of destiny, love, and the choices that make a life.`}</p>
-            </div>
-        </div>
-      </div>
-
-      <div className='trending-movies-title'><center><h4>Trending Movies</h4></center></div>
+    <div className='trending-movies-title'><center><h4>Trending Movies</h4></center></div>
       <div className='trending-movies-container'>
         <div className='trending-movies-posters'>
           {trendingMovies.map((movie, index) => (
             <Link key={movie.id} to={`/movie/${movie.original_title.replaceAll(' ', '-').toLowerCase() + '-' + movie.release_date.split('-')[0]}`}>
               <img className='MovieImage-size' src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={`${movie.original_title} Poster`} />
             </Link>
-          ))}
-        </div>
-
-
-       </div>
-      <div>
-        <center><span style={{color: "blanchedalmond"}}>© Cinematd. Co-founded by Amer Issa & Pride Yin</span></center>
+        ))}
       </div>
-      
     </div>
-    
+
+    <div>
+      <center><span style={{color: "blanchedalmond"}}>© Cinematd. Co-founded by Amer Issa & Pride Yin</span></center>
+    </div>
+      
+  </div>  
   )
 };
 
