@@ -130,7 +130,7 @@ function Profile() {
             });
         }
         getJSON();
-    }, {});
+    }, []);
 
     // Get authentications JSON.
     useEffect(() => {
@@ -147,7 +147,7 @@ function Profile() {
             });
         }
         getAuthJSON();
-    }, {});
+    }, []);
 
     // See whether the user is logged in and which user is logged in.
     useEffect(() => {
@@ -201,7 +201,7 @@ function Profile() {
         } else {
             followButton = <div></div>;
 
-            signOut = <div className="profile-sign-out"><button className="signout-button" onClick={() => redirect(`/signout`)}>Sign out</button></div>
+            signOutButton = <div className="profile-sign-out"><button className="signout-button" onClick={() => redirect(`/signout`)}>Sign out</button></div>
 
             editButton = <div>
                 <Button onClick={handleOpen}>Edit My Profile</Button>
@@ -496,7 +496,7 @@ function Profile() {
             <div className='profile-description'>
                 <p>{bio}</p>
             </div>
-            {signOut}
+            {signOutButton}
             <div className='profile-favorite-movies-title'><h3>Favorite Movies</h3></div>
             <div className='profile-favorite-movies'>
                     <ol>{favorites}</ol>

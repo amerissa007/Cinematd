@@ -35,7 +35,7 @@ export default function Navbar() {
         });
     }
     getJSON();
-  }, {});
+  }, []);
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
