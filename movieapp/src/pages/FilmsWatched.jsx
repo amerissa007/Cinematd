@@ -52,7 +52,7 @@ function FilmsWatched () {
             });
         }
         getJSON();
-    }, {});
+    }, []);
 
     // Get films by storing them into Promises that will later be used to fetch data
     // asynchronously. Then, sort the films by release date, and display them.
@@ -61,6 +61,7 @@ function FilmsWatched () {
     // after it is fetched.
     if (json[user] !== undefined) {
         for (let i = 0; i < json[user].films.length; i++) {
+            // TODO: Spams 404 error in console. Need fix ASAP
             promises.push(fetch('https://api.themoviedb.org/3/movie/' + json[user].films[i].id + '?language=en-US', options).then(res => res.json()).then(json => json));
         }
         const res = [];
@@ -81,6 +82,9 @@ function FilmsWatched () {
                         }
                         rating = json[user].films[j].rating;
                     }
+                }
+                if (results[i].original_title === undefined) {
+                    continue;
                 }
                 const map = {
                     title: results[i].original_title,
