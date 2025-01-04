@@ -1,31 +1,21 @@
 import './profile.css';
-import { Link, useNavigate } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
-
-import { BiSolidRightArrow } from 'react-icons/bi';
 
 import { auth, app } from '../FirebaseConfig';
+
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import { onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
 import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+
+import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import EditIcon from '@mui/icons-material/Edit';
-import StarIcon from '@mui/icons-material/Star';
-import TextField from '@mui/material/TextField';
-import { alpha, styled } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
-
-
-import { IconButton } from '@mui/material';
-
 
 let todaysDate = new Date().toLocaleDateString().split('/');
 todaysDate = [parseInt(todaysDate[0]), parseInt(todaysDate[1]), parseInt(todaysDate[2])];
@@ -36,7 +26,7 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: ''
+        Authorization: import.meta.env.VITE_TMDB_AUTH
     }
 };
 

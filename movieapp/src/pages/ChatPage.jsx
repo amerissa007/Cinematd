@@ -1,7 +1,9 @@
-import React from 'react'
 import './chatpage.scss'
+
 import Sidebar from '../chat/Sidebar'
 import Chat from '../chat/Chat'
+
+import React from 'react'
 
 /**
  * ChatPage component:

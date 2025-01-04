@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import './followingpage.css'
-import Avatar from '../Assets/avatar.jpg';
 
 import { app } from "../FirebaseConfig";
 
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 /**
  * FollowingPage component:
