@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import MovieQueue from '../util/MovieQueue';
-import './moviereviewpage.css'
-import StarIcon from '@mui/icons-material/Star';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-import { alpha, styled } from '@mui/material/styles';
-import { FiArrowRight } from "react-icons/fi";
+import './moviereviewpage.css';
+
 import { app } from "../FirebaseConfig";
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+
+import Rating from '@mui/material/Rating';
 
 /**
  * MovieReviewPage component:

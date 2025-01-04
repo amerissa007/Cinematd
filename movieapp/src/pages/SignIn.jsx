@@ -1,11 +1,12 @@
+import './signin.css';
+
+import { auth, app } from "../FirebaseConfig";
+
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, app } from "../FirebaseConfig";
-import './signin.css';
-import TextField from '@mui/material/TextField';
-
-import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 /**
  * SignIn component:

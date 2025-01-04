@@ -34,7 +34,7 @@ export const AuthContextProvider = ({children}) => {
             });
         }
         getJSON();
-    }, {});
+    }, []);
 
     useEffect(() => {
         const getAuthJSON = async () => {
@@ -50,7 +50,7 @@ export const AuthContextProvider = ({children}) => {
             });
         }
         getAuthJSON();
-    }, {});
+    }, []);
 
     useEffect(() => {
         const listen = onAuthStateChanged(auth, (user) => {

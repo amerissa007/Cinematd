@@ -1,7 +1,8 @@
 import "./moviemap.css";
-import { FiArrowRight } from "react-icons/fi";
 
 import React, { useState, useEffect } from 'react';
+
+import { FiArrowRight } from "react-icons/fi";
 
 /**
  * MovieMap component:

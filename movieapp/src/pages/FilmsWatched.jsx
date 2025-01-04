@@ -1,13 +1,11 @@
 import './filmswatched.css';
-import Avatar from '../Assets/avatar.jpg';
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
 
 import { app } from '../FirebaseConfig';
-import { BiSolidRightArrow } from 'react-icons/bi';
 
-import firebase from 'firebase/compat/app';
-import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 let todaysDate = new Date().toLocaleDateString().split('/');
 todaysDate = [parseInt(todaysDate[0]), parseInt(todaysDate[1]), parseInt(todaysDate[2])];
@@ -25,7 +23,7 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: ''
+        Authorization: import.meta.env.VITE_TMDB_AUTH
     }
 };
 
@@ -54,7 +52,7 @@ function FilmsWatched () {
             });
         }
         getJSON();
-    }, {});
+    }, []);
 
     // Get films by storing them into Promises that will later be used to fetch data
     // asynchronously. Then, sort the films by release date, and display them.
@@ -63,6 +61,7 @@ function FilmsWatched () {
     // after it is fetched.
     if (json[user] !== undefined) {
         for (let i = 0; i < json[user].films.length; i++) {
+            // TODO: Spams 404 error in console. Need fix ASAP
             promises.push(fetch('https://api.themoviedb.org/3/movie/' + json[user].films[i].id + '?language=en-US', options).then(res => res.json()).then(json => json));
         }
         const res = [];
@@ -83,6 +82,9 @@ function FilmsWatched () {
                         }
                         rating = json[user].films[j].rating;
                     }
+                }
+                if (results[i].original_title === undefined) {
+                    continue;
                 }
                 const map = {
                     title: results[i].original_title,

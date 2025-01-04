@@ -1,27 +1,28 @@
 
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import Home from './pages/HomePage';
-import UpcomingMovies from './pages/UpcomingMovies';
+
 import Navbar from './Navbar';
+
+import AuthDetails from './pages/AuthDetails';
+import ChatPage from './pages/ChatPage';
+import FilmsWatched from './pages/FilmsWatched';
+import FollowingPage from './pages/FollowingPage';
+import Home from './pages/HomePage';
+import IndividualReviewPage from './pages/IndividualReviewPage';
+import MembersPage from './pages/MembersPage';
 import MoviesPage from './pages/MoviesPage';
 import Movie from './pages/Movie';
-import Profile from './pages/Profile';
-import FilmsWatched from './pages/FilmsWatched';
-import Watchlist from './pages/Watchlist';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
-import AuthDetails from './pages/AuthDetails';
 import MovieMap from './pages/MovieMap';
 import MovieReviewPage from './pages/MovieReviewPage';
-import FollowingPage from './pages/FollowingPage';
-import IndividualReviewPage from './pages/IndividualReviewPage';
-import ChatPage from './pages/ChatPage';
-import { AuthContext } from './context/AuthContext';
+import Profile from './pages/Profile';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+// import UpcomingMovies from './pages/UpcomingMovies';
+import Watchlist from './pages/Watchlist';
+
+import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
-import MembersPage from './pages/MembersPage';
-// import MovieCache from './util/MovieCache';
+import { AuthContext } from './context/AuthContext';
 
 /**
  * We handle the routing of all pages here, as well as setting
@@ -41,9 +42,7 @@ function App() {
   */
 
   return (
-    
     <div className="App">
-
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
