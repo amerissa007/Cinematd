@@ -1,13 +1,11 @@
 import './filmswatched.css';
-import Avatar from '../Assets/avatar.jpg';
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
 
 import { app } from '../FirebaseConfig';
-import { BiSolidRightArrow } from 'react-icons/bi';
 
-import firebase from 'firebase/compat/app';
-import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 let todaysDate = new Date().toLocaleDateString().split('/');
 todaysDate = [parseInt(todaysDate[0]), parseInt(todaysDate[1]), parseInt(todaysDate[2])];
@@ -25,7 +23,7 @@ const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: ''
+        Authorization: import.meta.env.VITE_TMDB_AUTH
     }
 };
 

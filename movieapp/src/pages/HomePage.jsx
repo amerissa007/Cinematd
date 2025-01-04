@@ -1,21 +1,14 @@
-
-import React, {useState, useEffect} from 'react';
 import '../App.css';
-import { Container } from 'react-bootstrap';
-import BannerImage from '../Assets/emptypic.jpg';
-import ExampleImage from '../Assets/movieexample.jpg';
-import { FiArrowRight } from "react-icons/fi";
-import BannerBackground from '../Assets/blackgreygradient.jpg';
-// import Navbar from './Navbar';
-import { BiSolidRightArrow } from 'react-icons/bi';
-
 
 import MovieQueue from '../util/MovieQueue';
+
+import React, {useState, useEffect} from 'react';
+import { FiArrowRight } from "react-icons/fi";
+import { BiSolidRightArrow } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
 const upcomingUrl = 'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1';
 
-const auth = process.env.auth;
 let todaysDate = new Date().toLocaleDateString().split('/');
 
 const day = todaysDate[1];
@@ -25,7 +18,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: ''
+    Authorization: import.meta.env.VITE_TMDB_AUTH
   }
 };
 
@@ -77,7 +70,7 @@ const Home = () => {
     const result = results[i];
     const releaseDate = result.release_date.split('-');
 
-    if ((parseInt(releaseDate[0]) === 2024 && parseInt(releaseDate[1]) > todaysDate[0] - 6) || parseInt(releaseDate[0]) > 2024) {
+    if ((parseInt(releaseDate[0]) === todaysDate[2] && parseInt(releaseDate[1]) > todaysDate[0] - 6)) {
       continue;
     }
     const lowercase = result.original_title.replaceAll(' ', '-').toLowerCase() + '-' + releaseDate[0];

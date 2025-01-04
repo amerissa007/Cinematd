@@ -1,14 +1,17 @@
-import { beforeAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+import './signup.css';
+
 import { auth, app } from "../FirebaseConfig";
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
+
+import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import './signup.css'
-import firebase from 'firebase/compat/app';
+import { beforeAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+
+import TextField from '@mui/material/TextField';
 
 /**
  * SignUp component:

@@ -1,10 +1,11 @@
+import './authdetails.css';
+import { auth, app } from "../FirebaseConfig";
+
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { auth, app } from "../FirebaseConfig";
-import './authdetails.css';
-import firebase from 'firebase/compat/app';
-import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 /**
  * AuthDetails provides the sign out functionality for the app.

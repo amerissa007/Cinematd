@@ -1,33 +1,30 @@
-import React, { useState, useEffect } from "react";
-import MovieQueue from '../util/MovieQueue';
 import './movie.css'
+
+import { app, auth } from '../FirebaseConfig';
+import MovieQueue from '../util/MovieQueue';
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { onAuthStateChanged } from "firebase/auth";
+import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
+
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import StarIcon from '@mui/icons-material/Star';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import { alpha, styled } from '@mui/material/styles';
-import { FiArrowRight } from "react-icons/fi";
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
-import { app, auth } from '../FirebaseConfig';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import { useNavigate } from 'react-router-dom';
-
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { onAuthStateChanged } from "firebase/auth";
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { getFirestore, collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 const options = {
     method: 'GET',
     headers: {
         accept: 'application/json',
-        Authorization: ''
+        Authorization: import.meta.env.VITE_TMDB_AUTH
     }
 };
 
